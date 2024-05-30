@@ -1,100 +1,23 @@
-# Fastify Serverless Starter
+# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
+This project was bootstrapped with Fastify-CLI.
 
-Stack:
-- [x] NodeJs
-- [x] Fastify
-- [x] Serverless Framework
-- [x] Tap
-- [x] Eslint
-- [x] Prettier
-- [x] Husky
+## Available Scripts
 
-## Commands
+In the project directory, you can run:
 
-### Start server
+### `npm run dev`
 
-Start local server (use only for development and testing purposes)
+To start the app in dev mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```bash
-npm run dev
-```
+### `npm start`
 
-### Start serverless offline
+For production mode
 
-Start serverless in offline mode (use only for development and testing purposes)
+### `npm run test`
 
-```bash
-npm run offline
-```
+Run the test cases.
 
-### Testing
+## Learn More
 
-Launch tests
-
-```bash
-npm run test
-```
-
-Launch tests with coverage
-
-```bash
-npm run test:coverage
-```
-
-Launch tests with filter
-
-```bash
-npm run test:filter --filter=<filter>
-```
-
-### Linting and Formatting
-
-Check linting
-
-```bash
-npm run lint
-```
-
-Fix linting
-
-```bash
-npm run lint:fix
-```
-
-Format code
-
-```bash
-npm run format
-```
-
-### Install Pre-commit hook
-
-```bash
-npm run precommit:init
-```
-
-then copy the content of `pre-commit-dist` into `.husky/pre-commit`
-
-## Use Cases
-
-### Health Check
-
-```bash
-curl --location 'https://<app-url>/api/health/'
-```
-
-should return
-
-```json
-{
-  "status": "ok"
-}
-```
-
-## Swagger
-
-You can find the swagger documentation at the following url:
-
-```bash
-https://<app-url>/api/documentation
-```
+To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
