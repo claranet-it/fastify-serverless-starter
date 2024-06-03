@@ -1,50 +1,30 @@
-import 'module-alias/register'
-import fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
-import autoload from '@fastify/autoload'
-import { join } from 'path'
-import swagger from '@fastify/swagger'
-import swaggerUI from '@fastify/swagger-ui'
+import { join } from 'path';
+import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload';
+import { FastifyPluginAsync, FastifyServerOptions } from 'fastify';
 
-export default function createApp(
-  opts?: FastifyServerOptions,
-): FastifyInstance {
-  const defaultOptions = {
-    logger: true,
-  }
+export interface AppOptions extends FastifyServerOptions, Partial<AutoloadPluginOptions> {
 
-  const app = fastify({ ...defaultOptions, ...opts })
-
-  app.register(swagger, {
-    swagger: {
-      info: {
-        title: 'Fastify Serverless Starter',
-        description: 'Fastify Serverless Starter',
-        version: '0.1.0',
-      },
-      // securityDefinitions: {
-      //   apiKey: {
-      //     type: 'apiKey',
-      //     name: 'Authorization',
-      //     in: 'header',
-      //   },
-      // },
-    },
-  })
-
-  app.register(swaggerUI)
-
-  // app.register(autoload, {
-  //   dir: join(__dirname, 'core'),
-  // })
-  //
-  // app.register(autoload, {
-  //   dir: join(__dirname, 'features'),
-  // })
-
-  app.register(autoload, {
-    dir: join(__dirname, 'routes'),
-    options: { prefix: '/api' },
-  })
-
-  return app
 }
+// Pass --options via CLI arguments in command to enable these options.
+const options: AppOptions = {
+}
+
+const app: FastifyPluginAsync<AppOptions> = async (
+    fastify,
+    opts
+): Promise<void> => {
+  
+  // void fastify.register(AutoLoad, {
+  //   dir: join(__dirname, 'plugins'),
+  //   options: opts
+  // })
+
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'routes'),
+    options: opts
+  })
+
+};
+
+export default app;
+export { app, options }

@@ -1,23 +1,13 @@
-import {test} from "tap"
-import createApp from "@src/app";
-import {HealthResponseType} from "@src/models/health.model";
+import { test } from 'node:test'
+import * as assert from 'node:assert'
+import { build } from '../helper'
 
-test('health', async t => {
-  const app = createApp({
-    logger: false,
+test('example is loaded', async (t) => {
+  const app = await build(t)
+
+  const res = await app.inject({
+    url: '/health'
   })
 
-  t.teardown(() => {
-    app.close();
-  })
-  
-  const response = await app.inject({
-    method: 'GET',
-    url: '/api/health',
-  })
-
-  const healthResponse = response.json<HealthResponseType>()
-
-  t.equal(response.statusCode, 200, )
-  t.equal(healthResponse.status, 'ok')
+  assert.equal(res.payload, '{"status":"ok"}')
 })

@@ -1,47 +1,36 @@
 {
-  "name": "fastify-ts-mock",
+  "name": "fastify-serverless-starter",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This project was bootstrapped with Fastify-CLI.",
+  "main": "app.ts",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --exit-child ./src/server.ts",
-    "offline": "sls offline start",
-    "test": "tap test --ts --no-coverage",
-    "test:coverage": "npm run fixtures:load && ENV=test tap test --node-arg=--require=ts-node/register",
-    "test:filter": "npm run fixtures:load && ENV=test tap test --grep=$npm_config_filter --node-arg=--require=ts-node/register --no-coverage",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "precommit:init": "husky install"
+    "test": "npm run build:ts && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register test/**/*.ts",
+    "start": "npm run build:ts && fastify start -l info dist/app.js",
+    "build:ts": "tsc",
+    "watch:ts": "tsc -w",
+    "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
+    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/module-alias": "^2.0.2",
-    "@types/node": "^20.5.4",
-    "@types/tap": "^15.0.8",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "husky": "^8.0.3",
-    "nodemon": "^3.0.1",
-    "prettier": "^3.0.3",
-    "serverless-offline": "^12.0.4",
-    "serverless-plugin-typescript": "^2.1.5",
-    "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
-  },
   "dependencies": {
-    "@fastify/autoload": "^5.7.1",
-    "@fastify/aws-lambda": "^3.3.0",
-    "@fastify/swagger": "^8.10.0",
-    "@fastify/swagger-ui": "^1.9.3",
-    "@sinclair/typebox": "^0.31.2",
-    "fastify": "^4.23.2",
-    "fastify-plugin": "^4.5.1",
-    "module-alias": "^2.2.3",
-    "serverless-tscpaths": "^0.0.8",
-    "tap": "^16.3.8"
+    "@fastify/autoload": "^5.0.0",
+    "@fastify/aws-lambda": "^4.1.0",
+    "@fastify/sensible": "^5.0.0",
+    "fastify": "^4.26.1",
+    "fastify-plugin": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "c8": "^9.0.0",
+    "concurrently": "^8.2.2",
+    "fastify-cli": "^6.1.1",
+    "fastify-tsconfig": "^2.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^5.2.2"
   }
 }
