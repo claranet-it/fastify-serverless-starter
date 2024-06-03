@@ -63,3 +63,21 @@ test/types/index.js
 
 # compiled app
 dist
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.dev.local
+.env.test.local
+.env.production.local
+.env.local
+
+# infra
+build/
+
+# Terraform
+.terraform.tfstate
+.terraformrc
+.terraform.lock.hcl
+.terraform/
+terraform.tfvars
