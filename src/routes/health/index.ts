@@ -1,9 +1,21 @@
 import { FastifyPluginAsync } from 'fastify'
+import {HealthResponse, HealthResponseType} from "../../models/health";
 
 const health: FastifyPluginAsync = async (fastify): Promise<void> => {
-  fastify.get('/', async function () {
-    return { status: 'ok' }
-  })
+  fastify.get<{ Reply: HealthResponseType }>(
+    '/',
+    {
+      schema: {
+        tags: ['Health'],
+        response: {
+          200: HealthResponse,
+        },
+      },
+    },
+    async () => {
+      return { status: 'ok' }
+    },
+  )
 }
 
 export default health

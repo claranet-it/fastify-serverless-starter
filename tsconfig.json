@@ -1,8 +1,11 @@
 {
   "extends": "fastify-tsconfig",
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
   },
   "include": ["src/**/*.ts"]
 }
