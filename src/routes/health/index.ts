@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify'
-import { HealthResponse, HealthResponseType } from '../../models/health'
+import { HealthResponse, HealthResponseType } from '@/models/health'
 
 const health: FastifyPluginAsync = async (fastify): Promise<void> => {
   fastify.get<{ Reply: HealthResponseType }>(
