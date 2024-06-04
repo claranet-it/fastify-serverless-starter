@@ -18,6 +18,14 @@ For production mode
 
 Run the test cases.
 
+## Install Pre-commit hook
+
+```bash
+pnpm run pre-commit:init
+```
+
+then copy the content of `pre-commit-dist` into `.husky/pre-commit`
+
 ## Learn More
 
 To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
