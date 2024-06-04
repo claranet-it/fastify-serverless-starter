@@ -72,6 +72,9 @@ dist
 .env.production.local
 .env.local
 
+# Pre-commit hooks
+.husky/
+
 # infra
 build/
 
