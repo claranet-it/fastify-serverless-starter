@@ -5,12 +5,12 @@ This project was bootstrapped with Fastify-CLI.
 
 In the project directory, you can run:
 
-### `npm run dev`
+### `pnpm run dev`
 
 To start the app in dev mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm start`
+### `pnpm start`
 
 For production mode
 
@@ -18,10 +18,14 @@ For production mode
 
 Run the test cases.
 
+### `npm run lint`
+
+Run the linting.
+
 ## Install Pre-commit hook
 
 ```bash
-pnpm run pre-commit:init
+pnpm run precommit:init
 ```
 
 then copy the content of `pre-commit-dist` into `.husky/pre-commit`
