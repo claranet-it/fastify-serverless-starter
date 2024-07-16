@@ -24,6 +24,7 @@ mkdir -p "$nodejs_dir"
 BASE_DIR=../../..
 
 cp "$BASE_DIR/package.json" "$nodejs_dir"
+cp "$BASE_DIR/pnpm-lock.yaml" "$nodejs_dir"
 cd "$nodejs_dir"
 
 pnpm i -P --silent
