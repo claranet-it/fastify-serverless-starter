@@ -81,6 +81,5 @@ build/
 # Terraform
 .terraform.tfstate
 .terraformrc
-.terraform.lock.hcl
 .terraform/
 terraform.tfvars
